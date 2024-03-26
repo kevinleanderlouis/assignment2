@@ -11,7 +11,7 @@ steps:
     args: ['compute', 'instances', 'update-container', 'my-instance', '--container-image', 'us-central1-docker.pkg.dev/analog-context-413503/kevinleander/flaskapp:${COMMIT_SHA}', '--zone', 'us-central1-a']
 
 options:
-  # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
+  # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET test
   defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
 
 images:
