@@ -4,14 +4,14 @@ steps:
     args: 
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/analog-context-413503/kevinleander/flaskapp:${COMMIT_SHA}'
+      - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
       - '.'
 
   # Push the Docker image to the artifact registry
   - name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'push'
-      - 'us-central1-docker.pkg.dev/analog-context-413503/kevinleander/flaskapp:${COMMIT_SHA}'
+      - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
 
   # Update the compute instance with the new Docker image
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -21,11 +21,9 @@ steps:
       - 'update-container'
       - 'my-instance'
       - '--container-image'
-      - 'us-central1-docker.pkg.dev/analog-context-413503/kevinleander/flaskapp:${COMMIT_SHA}'
+      - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
       - '--zone'
       - 'us-central1-a'
-      - '--container-name'
-      - 'a99834a990c9'
  
 options:
   # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET test
@@ -33,4 +31,4 @@ options:
 
 images:
   # Store images in Google Artifact Registry
-  - 'us-central1-docker.pkg.dev/analog-context-413503/kevinleander/flaskapp:latest'  # Update the repository and tag
+  - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:latest'  # Update the repository and tag
