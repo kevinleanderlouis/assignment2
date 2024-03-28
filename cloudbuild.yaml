@@ -13,5 +13,6 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:latest'
 
- - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['compute', 'instances', 'reset', 'my-instance', '--zone', 'us-central1-a']
+  # Reset the specified instance
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['compute', 'instances', 'reset', 'my-instance', '--zone', 'us-central1-a']
