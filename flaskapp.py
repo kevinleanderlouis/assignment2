@@ -7,7 +7,7 @@ app = Flask(__name__)
 # App route created as per requirements.
 @app.route('/')
 def index():
-    name_of_company = "Dragon Ball"
+    name_of_company = "Dragon Ball Kevin"
     developer_name = "Kevin Leander Louis"
     student_id = "100918906"
     return f"Company Name: {name_of_company}<br>Developer: {developer_name}<br>Student ID: {student_id}"
