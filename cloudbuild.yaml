@@ -13,7 +13,7 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
 
-  # Step 3: Update the compute instance with the new Docker image test
+  # Step 3: Update the compute instance with the new Docker image
   - name: 'gcr.io/cloud-builders/gcloud'
     args: 
       - 'compute'
@@ -31,4 +31,4 @@ options:
 
 images:
   # Store images in Google Artifact Registry
-  - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:latest'  # Update the repository and tag
+  - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
