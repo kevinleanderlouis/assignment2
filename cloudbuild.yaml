@@ -13,7 +13,7 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
 
-  # Stop the existing container, remove it, pull the new image, and run the container with the new image test
+  # Stop the existing container, remove it, pull the new image, and run the container with the new image
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
