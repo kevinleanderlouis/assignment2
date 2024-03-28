@@ -1,6 +1,5 @@
-User
 steps:
-  # Build the Docker image
+  # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'build'
@@ -8,13 +7,13 @@ steps:
       - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
       - '.'
 
-  # Push the Docker image to the artifact registry
+  # Step 2: Push the Docker image to the artifact registry
   - name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'push'
       - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
 
-  # Update the compute instance with the new Docker image
+  # Step 3: Update the compute instance with the new Docker image
   - name: 'gcr.io/cloud-builders/gcloud'
     args: 
       - 'compute'
@@ -27,7 +26,7 @@ steps:
       - 'us-central1-a'
  
 options:
-  # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET test
+  # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
 
 images:
