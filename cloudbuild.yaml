@@ -13,13 +13,22 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
 
-  # SSH into the instance and update Docker image
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args: 
-      - '-c'
-      - |
-        gcloud compute ssh my-instance --zone us-central1-a --command="docker pull us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA} && docker stop my-container && docker rm my-container && docker run -d --name my-container us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}"
+ - name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      # Stop the container
+      gcloud compute ssh my-instance --zone us-central1-a --command="docker stop 2c52008d9a25"
+
+      # Remove the container
+      gcloud compute ssh my-instance --zone us-central1-a --command="docker rm 2c52008d9a25"
+
+      # Pull the new image
+      gcloud compute ssh my-instance --zone us-central1-a --command="docker pull us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}"
+
+      # Run the container with the new image
+      gcloud compute ssh my-instance --zone us-central1-a --command="docker run -d --name my-container us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}"
       
 options:
   defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
