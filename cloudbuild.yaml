@@ -19,7 +19,7 @@ steps:
       - 'compute'
       - 'instances'
       - 'update-container'
-      - 'my-instance'
+      - 'kevin-instance'
       - '--container-image'
       - 'us-central1-docker.pkg.dev/analog-context-413503/finaltry/flaskapp:${COMMIT_SHA}'
       - '--zone'
